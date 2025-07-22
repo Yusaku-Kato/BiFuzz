@@ -38,4 +38,6 @@ BiFuzz
 Each of 'Play_Style_A' and 'Play_Style_B' is an independent Unity project. The 'BiFuzz' directory under the 'Assets' directory contains the scripts that make up BiFuzz, and the 'Logs' directory stores the execution results.
 
 # Video
-[![Here](./README_Images/ASE_title.png)](https://youtu.be/VOrHfnLJSbk)
+<a href="https://youtu.be/VOrHfnLJSbk">
+  <img src="README_Images/ASE_title.png" width="50%">
+</a>
