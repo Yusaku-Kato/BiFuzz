@@ -56,7 +56,7 @@ public class test_BugAlert : MonoBehaviour
             if (collisionFrameCount >= requiredFrameCount)
             {
                 isPlayerCollidered = true;
-                Debug.Log("Bug detected");
+                Debug.Log("Bug_occurred");
                 Debug.Log("Name of the parent object attached: " + transform.parent.gameObject.name);
                 
                 try
