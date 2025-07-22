@@ -39,3 +39,4 @@ Each of 'Play_Style_A' and 'Play_Style_B' is an independent Unity project. The '
 
 # Video
 [Here](https://youtu.be/VOrHfnLJSbk)
+[![Here]("README_ImagesASE_title.pdf")](https://youtu.be/VOrHfnLJSbk)
