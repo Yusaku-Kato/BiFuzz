@@ -642,7 +642,7 @@ public class grad_local : MonoBehaviour
     private void OnLogMessageReceived(string condition, string stackTrace, LogType type)
     {
         
-        if (condition.Contains("Bug occurred"))
+        if (condition.Contains("Bug_occurred"))
         {
             Debug.Log("Bug detected");
             

@@ -3858,7 +3858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743885715}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.060576316, y: 0.0046580285, z: 0.0002826884, w: 0.9981527}
+  m_LocalRotation: {x: -0.060576316, y: 0.004658024, z: 0.00028268812, w: 0.9981527}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9685,16 +9685,16 @@ MonoBehaviour:
   cpNum8_range: 50
   cpNum9_range: 50
   cpNum10_range: 50
-  cpNum1_dir: 0
-  cpNum2_dir: 0
-  cpNum3_dir: 0
-  cpNum4_dir: 0
-  cpNum5_dir: 0
-  cpNum6_dir: 0
-  cpNum7_dir: 0
-  cpNum8_dir: 0
-  cpNum9_dir: 0
-  cpNum10_dir: 0
+  cpNum1_dir: 1
+  cpNum2_dir: 1
+  cpNum3_dir: 1
+  cpNum4_dir: 1
+  cpNum5_dir: 1
+  cpNum6_dir: 1
+  cpNum7_dir: 1
+  cpNum8_dir: 1
+  cpNum9_dir: 1
+  cpNum10_dir: 1
   stuckBugs: {fileID: 0}
 --- !u!114 &1940611347
 MonoBehaviour:

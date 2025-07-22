@@ -6,7 +6,7 @@ Unity 2022.3.12f1
 - [Fantasy Worlds: Forest FREE - Stylized Forest Environment Open World](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-worlds-forest-free-stylized-forest-environment-open-worl-282610)
 - [AllSky Free - 10 Sky / Skybox Set](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014)
 - [Fantasy Forest Environment - Free Demo](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-forest-environment-free-demo-35361)
-- [Simple Gems and Items Ultimate Animated Customizable Pack](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764)
+- [Simple Gems and Items Ultimate Animated Customizable Pack (Included in this repository)](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764)
 
 # How to Use
 1. 'Play_Style_A' and 'Play_Style_B' are independent Unity projects. Add and open each of them to the Unity Hub project.
