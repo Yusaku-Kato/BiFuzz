@@ -6,7 +6,7 @@ Unity 2022.3.12f1
 - [Fantasy Worlds: Forest FREE - Stylized Forest Environment Open World](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-worlds-forest-free-stylized-forest-environment-open-worl-282610)
 - [AllSky Free - 10 Sky / Skybox Set](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014)
 - [Fantasy Forest Environment - Free Demo](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-forest-environment-free-demo-35361)
-- [Simple Gems and Items Ultimate Animated Customizable Pack (Included in this repository)](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764)
+- [Simple Gems and Items Ultimate Animated Customizable Pack (The latest version is unapplicable, so the old version is included in this repository.)](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764)
 
 # How to Use
 1. 'Play_Style_A' and 'Play_Style_B' are independent Unity projects. Add and open each of them to the Unity Hub project.
@@ -23,6 +23,17 @@ Unity 2022.3.12f1
 10. Empty Assets/Logs and run the scene. Test results will be saved as a CSV file in Assets/Logs.
 
 # Directory Structure
+BiFuzz  
+├── Play_Style_A  
+│   └── Assets  
+│       ├── BiFuzz  
+│       └── Logs  
+└── Play_Style_B  
+    └── Assets  
+        ├── BiFuzz  
+        └── Logs  
+
+Each of 'Play_Style_A' and 'Play_Style_B' is an independent Unity project. The 'BiFuzz' directory under the 'Assets' directory contains the scripts that make up BiFuzz, and the 'Logs' directory stores the execution results.
 
 # Screencast
 [URL]("URL")
