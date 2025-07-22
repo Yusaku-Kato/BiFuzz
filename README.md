@@ -6,7 +6,7 @@ Unity 2022.3.12f1
 - [Fantasy Worlds: Forest FREE - Stylized Forest Environment Open World](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-worlds-forest-free-stylized-forest-environment-open-worl-282610)
 - [AllSky Free - 10 Sky / Skybox Set](https://assetstore.unity.com/packages/2d/textures-materials/sky/allsky-free-10-sky-skybox-set-146014)
 - [Fantasy Forest Environment - Free Demo](https://assetstore.unity.com/packages/3d/environments/fantasy/fantasy-forest-environment-free-demo-35361)
-- [Simple Gems and Items Ultimate Animated Customizable Pack (The latest version is unapplicable, so the old version is included in this repository.)](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764)
+- [Simple Gems and Items Ultimate Animated Customizable Pack](https://assetstore.unity.com/packages/3d/props/simple-gems-and-items-ultimate-animated-customizable-pack-73764) (The latest version is unapplicable, so the old version is included in this repository.)
 
 # How to Use
 1. 'Play_Style_A' and 'Play_Style_B' are independent Unity projects. Add and open each of them to the Unity Hub project.
@@ -16,7 +16,7 @@ Unity 2022.3.12f1
 5. Use the Render Pipeline Converter to convert your materials to URP.
 6. Attach all the scripts in Assets/BiFuzz to 'DogPolyart'.
 7. When you attach a script, it becomes a component. In the added component, uncheck 'Grad_init' and 'Grad_local' to disable them.
-8. Set the 'Grad_init' and 'Grad_local' components of 'DogPolyart' as shown in the image below.
+8. Set the 'Grad_init' and 'Grad_local' components of 'DogPolyart' as shown in the image below. Even if there is no change from initial values, be sure to move sliders and re-enter the values.
     <img src="README_Images/Grad_init.png" width="50%">
     <img src="README_Images/Grad_local.png" width="50%">
 9. Assign the number of frames the test will run to the variable exeTime in Assets/BiFuzz/ExeTime.cs.
