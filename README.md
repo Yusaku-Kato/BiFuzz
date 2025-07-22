@@ -1,3 +1,8 @@
+# Video
+<a href="https://youtu.be/VOrHfnLJSbk">
+  <img src="README_Images/ASE_title.png" width="50%">
+</a>
+
 # Requirements
 ## IDE
 Unity 2022.3.12f1
@@ -36,8 +41,3 @@ BiFuzz
 </pre>
 
 Each of 'Play_Style_A' and 'Play_Style_B' is an independent Unity project. The 'BiFuzz' directory under the 'Assets' directory contains the scripts that make up BiFuzz, and the 'Logs' directory stores the execution results.
-
-# Video
-<a href="https://youtu.be/VOrHfnLJSbk">
-  <img src="README_Images/ASE_title.png" width="50%">
-</a>
