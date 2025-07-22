@@ -23,6 +23,7 @@ Unity 2022.3.12f1
 10. Empty Assets/Logs and run the scene. Test results will be saved as a CSV file in Assets/Logs.
 
 # Directory Structure
+<pre>
 BiFuzz  
 ├── Play_Style_A  
 │   └── Assets  
@@ -32,8 +33,9 @@ BiFuzz
     └── Assets  
         ├── BiFuzz  
         └── Logs  
+</pre>
 
 Each of 'Play_Style_A' and 'Play_Style_B' is an independent Unity project. The 'BiFuzz' directory under the 'Assets' directory contains the scripts that make up BiFuzz, and the 'Logs' directory stores the execution results.
 
-# Screencast
+# Video
 [URL]("URL")
