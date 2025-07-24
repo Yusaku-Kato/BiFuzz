@@ -40,4 +40,4 @@ BiFuzz
         └── Logs  
 </pre>
 
-In this repository, we provide separate Unity projects corresponding to Play styles A and B, as used in the evaluation experiments presented in our paper. The 'BiFuzz' directory under the 'Assets' directory contains the scripts that make up BiFuzz, and the 'Logs' directory stores the execution results.
+In this repository, we provide separate Unity projects corresponding to Play styles A and B, as used in the evaluation experiments presented in our paper. Each play style has its own directory, which includes the 'Assets' directory containing the 'BiFuzz' directory (where the scripts that make up BiFuzz are stored) and the 'Logs' directory that contains the execution results.
