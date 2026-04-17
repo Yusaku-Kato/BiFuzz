@@ -23,7 +23,9 @@ public class grad_local : MonoBehaviour
     private List<string[]> csvData;
     private int frameIndex;
 
-    
+    [SerializeField]
+    public Terrain terrain;
+
     [SerializeField, Range(0, 99)] 
     public int cpNum1;
     [SerializeField, Range(0, 99)]
@@ -169,18 +171,26 @@ public class grad_local : MonoBehaviour
 
         //Debug.Log("cpNum1: " + int.Parse(paramColumns[0]));
         //Debug.Log("cpNum10_dir: " + int.Parse(paramColumns[29]));
-        cp1 = create_cp(int.Parse(paramColumns[0]), int.Parse(paramColumns[10]), int.Parse(paramColumns[20]), ss1_loc);
-        cp2 = create_cp(int.Parse(paramColumns[1]), int.Parse(paramColumns[11]), int.Parse(paramColumns[21]), ss2_loc);
-        cp3 = create_cp(int.Parse(paramColumns[2]), int.Parse(paramColumns[12]), int.Parse(paramColumns[22]), ss3_loc);
-        cp4 = create_cp(int.Parse(paramColumns[3]), int.Parse(paramColumns[13]), int.Parse(paramColumns[23]), ss4_loc);
-        cp5 = create_cp(int.Parse(paramColumns[4]), int.Parse(paramColumns[14]), int.Parse(paramColumns[24]), ss5_loc);
-        cp6 = create_cp(int.Parse(paramColumns[5]), int.Parse(paramColumns[15]), int.Parse(paramColumns[25]), ss6_loc);
-        cp7 = create_cp(int.Parse(paramColumns[6]), int.Parse(paramColumns[16]), int.Parse(paramColumns[26]), ss7_loc);
-        cp8 = create_cp(int.Parse(paramColumns[7]), int.Parse(paramColumns[17]), int.Parse(paramColumns[27]), ss8_loc);
-        cp9 = create_cp(int.Parse(paramColumns[8]), int.Parse(paramColumns[18]), int.Parse(paramColumns[28]), ss9_loc);
-        cp10 = create_cp(int.Parse(paramColumns[9]), int.Parse(paramColumns[19]), int.Parse(paramColumns[29]), ss10_loc);
+        List<Vector3> treePositions = new List<Vector3>();
+        if (terrain != null && terrain.terrainData != null)
+        {
+            foreach (var tree in terrain.terrainData.treeInstances)
+            {
+                Vector3 pos = Vector3.Scale(tree.position, terrain.terrainData.size) + terrain.transform.position;
+                treePositions.Add(pos);
+            }
+        }
+        cp1 = create_cp(int.Parse(paramColumns[0]), int.Parse(paramColumns[10]), int.Parse(paramColumns[20]), ss1_loc, treePositions);
+        cp2 = create_cp(int.Parse(paramColumns[1]), int.Parse(paramColumns[11]), int.Parse(paramColumns[21]), ss2_loc, treePositions);
+        cp3 = create_cp(int.Parse(paramColumns[2]), int.Parse(paramColumns[12]), int.Parse(paramColumns[22]), ss3_loc, treePositions);
+        cp4 = create_cp(int.Parse(paramColumns[3]), int.Parse(paramColumns[13]), int.Parse(paramColumns[23]), ss4_loc, treePositions);
+        cp5 = create_cp(int.Parse(paramColumns[4]), int.Parse(paramColumns[14]), int.Parse(paramColumns[24]), ss5_loc, treePositions);
+        cp6 = create_cp(int.Parse(paramColumns[5]), int.Parse(paramColumns[15]), int.Parse(paramColumns[25]), ss6_loc, treePositions);
+        cp7 = create_cp(int.Parse(paramColumns[6]), int.Parse(paramColumns[16]), int.Parse(paramColumns[26]), ss7_loc, treePositions);
+        cp8 = create_cp(int.Parse(paramColumns[7]), int.Parse(paramColumns[17]), int.Parse(paramColumns[27]), ss8_loc, treePositions);
+        cp9 = create_cp(int.Parse(paramColumns[8]), int.Parse(paramColumns[18]), int.Parse(paramColumns[28]), ss9_loc, treePositions);
+        cp10 = create_cp(int.Parse(paramColumns[9]), int.Parse(paramColumns[19]), int.Parse(paramColumns[29]), ss10_loc, treePositions);
 
-        
         List<string> csvLines = new List<string>(File.ReadAllLines(Path.Combine(Application.dataPath, "Logs", "check_points.csv")));
         for (int i = 0; i < csvLines.Count; i++)
         {
@@ -587,53 +597,73 @@ public class grad_local : MonoBehaviour
 #endif
     }
 
-    private Vector3[] create_cp(int num, int range, int dir, Vector3 ref_point)
+    private const float CpAvoidRadius = 5f;
+    private const int CpPlaceMaxTries = 100;
+
+    private static bool IsClearOfObstacles(Vector3 candidate, List<Vector3> obstaclePositions)
+    {
+        Vector3 c = new Vector3(candidate.x, 0, candidate.z);
+        foreach (var pos in obstaclePositions)
+        {
+            if (Vector3.Distance(c, new Vector3(pos.x, 0, pos.z)) < CpAvoidRadius)
+                return false;
+        }
+        return true;
+    }
+
+    private Vector3[] create_cp(int num, int range, int dir, Vector3 ref_point, List<Vector3> obstacle_positions)
     {
         Vector3[] cp = new Vector3[num];
-        float x;
-        float z;
-        switch (dir)
+        float rangeFactor = (float)(range + 1) / 100f;
+
+        for (int i = 0; i < num; i++)
         {
-            case 1:
-                for (int i = 0; i < num; i++)
-                {
-                    float x_max = ref_point.x + (1024f - ref_point.x) * ((float)(range + 1) / 100f);
-                    float z_max = ref_point.z + (1024f - ref_point.z) * ((float)(range + 1) / 100f);
-                    x = UnityEngine.Random.Range(ref_point.x, x_max);
-                    z = UnityEngine.Random.Range(ref_point.z, z_max);
-                    cp[i] = new Vector3(x, 0, z);
-                }
-                break;
-            case 2:
-                for (int i = 0; i < num; i++)
-                {
-                    float x_min = ref_point.x - ref_point.x * ((float)(range + 1) / 100f);
-                    float z_max = ref_point.z + (1024f - ref_point.z) * ((float)(range + 1) / 100f);
-                    x = UnityEngine.Random.Range(x_min, ref_point.x);
-                    z = UnityEngine.Random.Range(ref_point.z, z_max);
-                    cp[i] = new Vector3(x, 0, z);
-                }
-                break;
-            case 3:
-                for (int i = 0; i < num; i++)
-                {
-                    float x_min = ref_point.x - ref_point.x * ((float)(range + 1) / 100f);
-                    float z_min = ref_point.z - ref_point.z * ((float)(range + 1) / 100f);
-                    x = UnityEngine.Random.Range(x_min, ref_point.x);
-                    z = UnityEngine.Random.Range(z_min, ref_point.z);
-                    cp[i] = new Vector3(x, 0, z);
-                }
-                break;
-            case 4:
-                for (int i = 0; i < num; i++)
-                {
-                    float x_max = ref_point.x + (1024f - ref_point.x) * ((float)(range + 1) / 100f);
-                    float z_min = ref_point.z - ref_point.z * ((float)(range + 1) / 100f);
-                    x = UnityEngine.Random.Range(ref_point.x, x_max);
-                    z = UnityEngine.Random.Range(z_min, ref_point.z);
-                    cp[i] = new Vector3(x, 0, z);
-                }
-                break;
+            float x_min, x_max, z_min, z_max;
+            switch (dir)
+            {
+                case 1:
+                    x_min = ref_point.x;
+                    x_max = ref_point.x + (1024f - ref_point.x) * rangeFactor;
+                    z_min = ref_point.z;
+                    z_max = ref_point.z + (1024f - ref_point.z) * rangeFactor;
+                    break;
+                case 2:
+                    x_min = ref_point.x - ref_point.x * rangeFactor;
+                    x_max = ref_point.x;
+                    z_min = ref_point.z;
+                    z_max = ref_point.z + (1024f - ref_point.z) * rangeFactor;
+                    break;
+                case 3:
+                    x_min = ref_point.x - ref_point.x * rangeFactor;
+                    x_max = ref_point.x;
+                    z_min = ref_point.z - ref_point.z * rangeFactor;
+                    z_max = ref_point.z;
+                    break;
+                case 4:
+                    x_min = ref_point.x;
+                    x_max = ref_point.x + (1024f - ref_point.x) * rangeFactor;
+                    z_min = ref_point.z - ref_point.z * rangeFactor;
+                    z_max = ref_point.z;
+                    break;
+                default:
+                    x_min = x_max = ref_point.x;
+                    z_min = z_max = ref_point.z;
+                    Debug.LogError("Invalid direction value");
+                    break;
+            }
+
+            int tryCount = 0;
+            bool valid = false;
+            Vector3 candidate = Vector3.zero;
+            while (!valid && tryCount < CpPlaceMaxTries)
+            {
+                float x = UnityEngine.Random.Range(x_min, x_max);
+                float z = UnityEngine.Random.Range(z_min, z_max);
+                candidate = new Vector3(x, 0, z);
+                valid = IsClearOfObstacles(candidate, obstacle_positions);
+                tryCount++;
+            }
+            cp[i] = candidate;
         }
         return cp;
     }
